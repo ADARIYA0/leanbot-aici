@@ -1,46 +1,95 @@
-# Astro Starter Kit: Basics
+<div align="center">
+    <img src="./src/assets/logo/aici.webp" height="120" alt="AiCI" align="middle">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="./src/assets/logo/leanbot.png" height="75" alt="Leanbot" align="middle">
+</div>
 
-```sh
-npm create astro@latest -- --template basics
-```
+<p align="center">
+    <img src="https://img.shields.io/github/last-commit/ADARIYA0/leanbot-aici/main?display_timestamp=committer&style=for-the-badge&color=%230375b5" />
+    <img src="https://img.shields.io/github/created-at/ADARIYA0/leanbot-aici?style=for-the-badge&color=%234f5d95" />
+    <img src="https://img.shields.io/npm/l/nuxt?style=for-the-badge" />
+    <img src="https://img.shields.io/github/package-json/v/ADARIYA0/leanbot-aici?style=for-the-badge" />
+</p>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Leanbot — Educational Robotics Platform by AiCI
 
-## 🚀 Project Structure
+**leanbot-aici** is a frontend-only web project developed for AiCI to provide structured information, documentation, and educational resources about Leanbot — a STEM robotics platform widely used in competitions, workshops, and learning programs.
 
-Inside of your Astro project, you'll see the following folders and files:
+---
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+### About Leanbot
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Leanbot is a modular STEM robotics system designed for education, experimentation, and competitive robotics activities. It integrates programmable hardware components, sensors, and expansion modules to support hands-on learning in robotics, engineering, and computational thinking.
 
-## 🧞 Commands
+AiCI actively utilizes Leanbot in competitions, robotics events, and educational programs organized by the company.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Project Purpose
 
-## 👀 Want to learn more?
+This repository contains the source code for the official Leanbot informational website developed for AiCI. The website aims to:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Provide factual and technical information about Leanbot  
+- Deliver structured tutorials and usage guides  
+- Present documentation and educational resources  
+- Serve as a centralized reference platform for Leanbot-related materials  
+
+The website is built as a modern frontend application using Nuxt.
+
+---
+
+### Scope of the Website
+
+The platform includes:
+
+- Leanbot overview and system introduction  
+- Hardware and module explanations  
+- Usage tutorials and step-by-step guides  
+- Educational insights and implementation examples  
+
+---
+
+### Technology Stack
+
+- TypeScript  
+- Astro 5.18.0  
+- Vue 3.5.29  
+- Tailwind CSS 4.2.1  
+- Docker  
+
+---
+
+### Repository Structure
+
+This repository contains only the frontend implementation and does not include backend services or proprietary Leanbot firmware.
+
+---
+
+### Ownership & Attribution
+
+This project is developed for AiCI.  
+Leanbot and related materials belong to their respective owners.  
+This repository serves as an informational and educational platform.
+
+---
+
+### Status
+
+Active development — continuously improved as documentation and educational materials evolve.
+
+---
+
+### Contact
+
+**Artificial Intelligence Center Indonesia (AiCI)**  
+Pertamina Multidisciplinary Research Laboratory Building  
+Faculty of Mathematics and Natural Sciences  
+University of Indonesia, 4th Floor  
+Depok, West Java 16424
+Phone: 0821-1010-3938
+
+---
+
+### License
+
+Proprietary - All rights reserved by Artificial Intelligence Center Indonesia (AiCI)
