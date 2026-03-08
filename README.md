@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./src/assets/logo/aici.webp" height="120" alt="AiCI" align="middle">
+    <img src="./src/assets/logo/aici/blue/aici.webp" height="120" alt="AiCI" align="middle">
     &nbsp;&nbsp;&nbsp;&nbsp;
     <img src="./src/assets/logo/leanbot.png" height="75" alt="Leanbot" align="middle">
 </div>
