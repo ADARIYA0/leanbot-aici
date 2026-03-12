@@ -52,8 +52,8 @@ The platform includes:
 ### Technology Stack
 
 - TypeScript  
-- Astro 5.18.0  
-- Vue 3.5.29  
+- Astro 6.0.4  
+- Vue 3.5.30  
 - Tailwind CSS 4.2.1  
 - Docker  
 
