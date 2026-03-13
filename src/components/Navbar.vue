@@ -26,7 +26,7 @@ function toggleMobileMenu() {
 
 <template>
   <header
-    class="sticky top-0 z-50 w-full bg-leanbot-navy"
+    class="sticky top-0 z-50 w-full border-b border-gray-200/60 bg-white/80 backdrop-blur-md"
   >
     <nav class="mx-auto flex h-16 max-w-7xl items-center px-6 lg:px-8">
       <!-- Logo -->
@@ -38,19 +38,19 @@ function toggleMobileMenu() {
         />
       </a>
 
-      <!-- Desktop Navigation Links (left-aligned, next to logo) -->
+      <!-- Desktop Navigation Links -->
       <div class="ml-16 hidden items-center gap-8 lg:flex">
         <a
           v-for="link in navLinks"
           :key="link.label"
           :href="link.href"
-          class="nav-link text-xs font-medium uppercase tracking-widest text-white transition-colors duration-300 hover:text-leanbot-red"
+          class="nav-link text-xs font-medium uppercase tracking-widest text-gray-700 transition-colors duration-300 hover:text-leanbot-red"
         >
           {{ link.label }}
         </a>
       </div>
 
-      <!-- Spacer to push CTA button to the right -->
+      <!-- Spacer -->
       <div class="flex-1"></div>
 
       <!-- Desktop CTA Button -->
@@ -59,7 +59,7 @@ function toggleMobileMenu() {
           href="https://aici-umg.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="cta-button inline-flex items-center bg-leanbot-red border border-leanbot-red px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-aici-blue hover:bg-aici-blue"
+          class="cta-button inline-flex items-center rounded-lg bg-leanbot-red px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-leanbot-navy"
         >
           Kunjungi AiCI
         </a>
@@ -68,11 +68,10 @@ function toggleMobileMenu() {
       <!-- Mobile Hamburger -->
       <button
         type="button"
-        class="inline-flex items-center justify-center text-white lg:hidden"
+        class="inline-flex items-center justify-center text-gray-700 lg:hidden"
         aria-label="Toggle navigation menu"
         @click="toggleMobileMenu"
       >
-        <!-- Hamburger / Close icon -->
         <svg
           v-if="!isMobileMenuOpen"
           xmlns="http://www.w3.org/2000/svg"
@@ -102,14 +101,14 @@ function toggleMobileMenu() {
     <Transition name="slide">
       <div
         v-if="isMobileMenuOpen"
-        class="border-t border-white/10 bg-leanbot-navy lg:hidden"
+        class="border-t border-gray-200/60 bg-white lg:hidden"
       >
         <div class="space-y-1 px-6 pb-6 pt-4">
           <a
             v-for="link in navLinks"
             :key="link.label"
             :href="link.href"
-            class="block py-2.5 text-xs font-medium uppercase tracking-widest text-white transition-colors duration-300 hover:text-leanbot-red"
+            class="block py-2.5 text-xs font-medium uppercase tracking-widest text-gray-700 transition-colors duration-300 hover:text-leanbot-red"
             @click="isMobileMenuOpen = false"
           >
             {{ link.label }}
@@ -119,7 +118,7 @@ function toggleMobileMenu() {
               href="https://aici-umg.com"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center bg-leanbot-red border border-leanbot-red px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-aici-blue hover:bg-aici-blue"
+              class="inline-flex items-center rounded-lg bg-leanbot-red px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-leanbot-navy"
             >
               Kunjungi AiCI
             </a>
