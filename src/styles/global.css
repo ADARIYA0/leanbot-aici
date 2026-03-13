@@ -9,4 +9,14 @@
   --color-leanbot-blue: #008EC2;
   --color-aici-blue: #046BD2;
   --color-leanbot-navy-dark: #0A0930;
+  --color-surface: #F9FAFB;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fff;
+  color: #1f2937;
 }

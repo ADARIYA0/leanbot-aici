@@ -2,8 +2,8 @@
 import "../styles/global.css";
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
-import aiciLogo from "../assets/logo/aici/white/aici_white-2.png";
-import aiciLogoPng from "../assets/logo/aici/white/aici_white.png";
+import aiciLogoBluePng from "../assets/logo/aici/blue/aici-2.png";
+import aiciLogoWhitePng from "../assets/logo/aici/white/aici_white.png";
 ---
 
 <html lang="id">
@@ -13,15 +13,18 @@ import aiciLogoPng from "../assets/logo/aici/white/aici_white.png";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Leanbot AiCI — Platform edukasi robotika dan STEM Metaverse pertama di dunia dengan teknologi Digital Twin untuk pembelajaran yang menyenangkan." />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-		<title>Leanbot AiCI</title>
+		<title>Leanbot AiCI — STEM Metaverse Robot Toolkit</title>
 	</head>
 	<body class="font-sans">
-		<Navbar client:load logoSrc={aiciLogo.src} />
-		<slot />
-		<Footer client:load logoSrc={aiciLogoPng.src} />
+		<Navbar client:load logoSrc={aiciLogoBluePng.src} />
+		<main>
+			<slot />
+		</main>
+		<Footer client:load logoSrc={aiciLogoWhitePng.src} />
 	</body>
 </html>
 
