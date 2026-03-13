@@ -1,10 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   logoSrc: {
     type: String,
     required: true
+  },
+  currentPath: {
+    type: String,
+    default: '/'
   }
 })
 
@@ -21,6 +25,12 @@ const navLinks = [
 
 function toggleMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+function isActive(path) {
+  if (path === '/') return props.currentPath === '/' || props.currentPath === ''
+  // Handle trailing slashes in Astro (e.g., /edukasi and /edukasi/)
+  return props.currentPath.startsWith(path)
 }
 </script>
 
@@ -44,7 +54,10 @@ function toggleMobileMenu() {
           v-for="link in navLinks"
           :key="link.label"
           :href="link.href"
-          class="nav-link text-xs font-medium uppercase tracking-widest text-gray-700 transition-colors duration-300 hover:text-leanbot-red"
+          :class="[
+            'nav-link text-xs font-medium uppercase tracking-widest transition-colors duration-300',
+            isActive(link.href) ? 'text-leanbot-red' : 'text-gray-700 hover:text-leanbot-red'
+          ]"
         >
           {{ link.label }}
         </a>
@@ -108,7 +121,10 @@ function toggleMobileMenu() {
             v-for="link in navLinks"
             :key="link.label"
             :href="link.href"
-            class="block py-2.5 text-xs font-medium uppercase tracking-widest text-gray-700 transition-colors duration-300 hover:text-leanbot-red"
+            :class="[
+              'block py-2.5 text-xs font-medium uppercase tracking-widest transition-colors duration-300',
+              isActive(link.href) ? 'text-leanbot-red' : 'text-gray-700 hover:text-leanbot-red'
+            ]"
             @click="isMobileMenuOpen = false"
           >
             {{ link.label }}

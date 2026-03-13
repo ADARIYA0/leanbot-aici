@@ -20,7 +20,7 @@ import aiciLogoWhitePng from "../assets/logo/aici/white/aici_white.png";
 		<title>Leanbot AiCI — STEM Metaverse Robot Toolkit</title>
 	</head>
 	<body class="font-sans">
-		<Navbar client:load logoSrc={aiciLogoBluePng.src} />
+		<Navbar client:load logoSrc={aiciLogoBluePng.src} currentPath={Astro.url.pathname} />
 		<main>
 			<slot />
 		</main>
