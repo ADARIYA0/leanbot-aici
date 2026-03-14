@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EduHero from '../components/EduHero.vue';
+import EduArticleGrid from '../components/EduArticleGrid.vue';
+import CtaSection from '../components/CtaSection.vue';
+---
+
+<Layout>
+  <!-- Hero Banner untuk Halaman Edukasi -->
+  <EduHero client:load />
+
+  <!-- Grid Artikel Edukasi -->
+  <EduArticleGrid client:load />
+
+  <!-- Gunakan ulang CTA Section dari Landing Page -->
+  <CtaSection client:load />
+</Layout>
