@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutHero from '../components/AboutHero.vue';
+import AboutCollaboration from '../components/AboutCollaboration.vue';
+import AboutAici from '../components/AboutAici.vue';
+import CtaSection from '../components/CtaSection.vue';
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <AboutHero client:load />
+
+  <!-- Partnership & Collaboration Logo Section -->
+  <AboutCollaboration client:load />
+
+  <!-- AiCI Company Profile & Programs -->
+  <AboutAici client:load />
+
+  <!-- Global Footer CTA -->
+  <CtaSection client:load />
+</Layout>
