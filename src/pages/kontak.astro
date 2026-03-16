@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactHero from '../components/ContactHero.vue';
+import ContactInfoCards from '../components/ContactInfoCards.vue';
+import ContactFormSection from '../components/ContactFormSection.vue';
+import CtaSection from '../components/CtaSection.vue';
+---
+
+<Layout>
+  <!-- Contact Specific Top Banner -->
+  <ContactHero client:load />
+
+  <!-- Info Cards Extracted into Overlapping Grid -->
+  <ContactInfoCards client:load />
+
+  <!-- Split Contact Form & Image Branding Side -->
+  <ContactFormSection client:load />
+
+  <!-- Re-using Standard Footer Call To Action -->
+  <CtaSection client:load />
+</Layout>
