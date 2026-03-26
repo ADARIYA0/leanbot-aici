@@ -1,53 +1,102 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import CtaSection from '../../components/CtaSection.vue';
-import { articles } from '../../data/articles';
-import aiciLogo from '../../assets/logo/aici/blue/aici-3.png';
+import Layout from "../../layouts/Layout.astro";
+import CtaSection from "../../components/CtaSection.vue";
+import aiciLogo from "../../assets/logo/aici/blue/aici-3.png";
 
-// 1. Generate path dinamis untuk semua artikel yang ada di articles.ts
-export function getStaticPaths() {
-  return articles.map((article) => {
-    return {
-      params: { slug: article.slug },
-      props: { article }
-    };
+export const prerender = false;
+
+const { slug } = Astro.params;
+const CMS_API_URL = import.meta.env.CMS_API_URL;
+
+let article: any = null;
+
+try {
+  const res = await fetch(`${CMS_API_URL}/v1/cms/public/articles/${slug}`, {
+    headers: { Accept: "application/json" },
   });
+  if (res.ok) {
+    const json = await res.json();
+    const a = json.data;
+    if (a) {
+      article = {
+        id: a.id,
+        slug: a.slug,
+        title: a.title,
+        excerpt: a.excerpt || "",
+        date: a.published_at
+          ? new Date(a.published_at).toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })
+          : "",
+        category: a.category || "Umum",
+        image: a.featured_image
+          ? a.featured_image.startsWith("http")
+            ? a.featured_image
+            : `${CMS_API_URL.replace("/api", "")}/storage/${a.featured_image.replace(/^\/?(storage\/)?/, "")}`
+          : "",
+        readTime: a.read_time
+          ? `${a.read_time} ${a.read_time_unit === "hour" ? "hour" : "min"} read`
+          : "",
+        author: a.author || "Tim Edukasi Leanbot AiCI",
+        content: a.content || "",
+      };
+    }
+  }
+} catch (err) {
+  console.error("Failed to fetch article:", err);
 }
 
-// 2. Akses props yang dikirim dari getStaticPaths
-const { article } = Astro.props;
+if (!article) {
+  return Astro.redirect("/edukasi");
+}
 ---
 
 <Layout>
   <!-- Background Header Artikel -->
-  <div class="relative bg-surface py-24 sm:py-32 overflow-hidden border-b border-gray-200">
+  <div
+    class="relative bg-surface py-24 sm:py-32 overflow-hidden border-b border-gray-200"
+  >
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-3xl text-center">
         <!-- Tag & Tanggal -->
         <div class="mb-6 flex items-center justify-center gap-x-4 text-sm">
-          <span class="rounded-full bg-blue-50 px-3 py-1 font-medium text-aici-blue ring-1 ring-inset ring-blue-500/10">
+          <span
+            class="rounded-full bg-blue-50 px-3 py-1 font-medium text-aici-blue ring-1 ring-inset ring-blue-500/10"
+          >
             {article.category}
           </span>
           <time class="text-gray-500">
             {article.date}
           </time>
-          <div class="h-1 w-1 rounded-full bg-gray-400"></div>
-          <span class="text-gray-500">
-            {article.readTime}
-          </span>
+          {
+            article.readTime && (
+              <>
+                <div class="h-1 w-1 rounded-full bg-gray-400" />
+                <span class="text-gray-500">{article.readTime}</span>
+              </>
+            )
+          }
         </div>
-        
+
         <!-- Judul Artikel Besar -->
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8 leading-tight">
+        <h1
+          class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8 leading-tight"
+        >
           {article.title}
         </h1>
 
-        <!-- Info Penulis (Dummy Tim Leanbot) -->
+        <!-- Info Penulis -->
         <div class="mt-8 flex items-center justify-center gap-x-3">
-          <img src={aiciLogo.src} alt="Tim Edukasi Leanbot AiCI" class="h-10 w-10 rounded-full bg-white object-contain p-1.5 ring-1 ring-gray-200" />
+          <img
+            src={aiciLogo.src}
+            alt={article.author}
+            class="h-10 w-10 rounded-full bg-white object-contain p-1.5 ring-1 ring-gray-200"
+          />
           <div class="text-sm leading-6">
             <p class="font-semibold text-gray-900">Ditulis oleh</p>
-            <p class="text-gray-500">Tim Edukasi Leanbot AiCI</p>
+            <p class="text-gray-500">{article.author}</p>
           </div>
         </div>
       </div>
@@ -57,42 +106,41 @@ const { article } = Astro.props;
   <!-- Konten Artikel -->
   <article class="bg-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      
       <!-- Featured Image Besar -->
-      <div class="mx-auto max-w-4xl -mt-32 mb-16 relative z-10">
-        <div class="relative w-full overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ring-1 ring-gray-200">
-           <img 
-             src={article.image} 
-             alt={article.title} 
-             class="w-full h-auto object-cover max-h-[500px]"
-           />
-        </div>
-      </div>
+      {
+        article.image && (
+          <div class="mx-auto max-w-4xl -mt-32 mb-16 relative z-10">
+            <div class="relative w-full overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ring-1 ring-gray-200">
+              <img
+                src={article.image}
+                alt={article.title}
+                class="w-full h-auto object-cover max-h-[500px]"
+              />
+            </div>
+          </div>
+        )
+      }
 
-      <!-- Markdown / HMTL Konten (Prose) -->
-      <!-- Menggunakan set:html untuk merender string HTML dari src/data/articles.ts -->
-      <div 
-         class="mx-auto max-w-3xl prose prose-lg prose-blue prose-h2:text-leanbot-navy prose-h2:mt-12 prose-a:text-leanbot-red hover:prose-a:text-leanbot-navy prose-img:rounded-xl text-gray-600 leading-relaxed"
-         set:html={article.content}
-      >
-      </div>
-      
+      <!-- HTML Konten (Prose) -->
+      <div
+        class="mx-auto max-w-3xl prose prose-lg prose-blue prose-h2:text-leanbot-navy prose-h2:mt-12 prose-a:text-leanbot-red hover:prose-a:text-leanbot-navy prose-img:rounded-xl text-gray-600 leading-relaxed"
+        set:html={article.content}
+      />
     </div>
   </article>
 
   <!-- CTA Banner Reused -->
   <CtaSection client:load />
-
 </Layout>
 
 <style is:global>
-  /* Menambahkan style global ringan untuk Tailwind Typography (prose) jika plugin resminya belum diinstall */
+  /* Style untuk Tailwind Typography (prose) */
   .prose h2 {
     font-size: 1.875rem;
     font-weight: 700;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    color: #11104D; /* leanbot-navy */
+    color: #11104d; /* leanbot-navy */
     letter-spacing: -0.025em;
   }
   .prose p {

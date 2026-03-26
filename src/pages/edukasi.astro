@@ -1,8 +1,60 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import EduHero from '../components/EduHero.vue';
-import EduArticleGrid from '../components/EduArticleGrid.vue';
-import CtaSection from '../components/CtaSection.vue';
+import Layout from "../layouts/Layout.astro";
+import EduHero from "../components/EduHero.vue";
+// @ts-ignore - Vue SFC default export works at runtime via Vite
+import EduArticleGrid from "../components/EduArticleGrid.vue";
+import CtaSection from "../components/CtaSection.vue";
+
+export const prerender = false;
+
+const CMS_API_URL = import.meta.env.CMS_API_URL;
+
+let articles: any[] = [];
+let categories: string[] = ["Semua Artikel"];
+
+try {
+  const res = await fetch(
+    `${CMS_API_URL}/v1/cms/public/articles?content_type=education&per_page=50`,
+    {
+      headers: { Accept: "application/json" },
+    },
+  );
+  if (res.ok) {
+    const json = await res.json();
+    const rawArticles = json.data?.data ?? json.data ?? [];
+    articles = rawArticles.map((a: any) => ({
+      id: a.id,
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.excerpt || "",
+      date: a.published_at
+        ? new Date(a.published_at).toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })
+        : "",
+      category: a.category || "Umum",
+      image: a.featured_image
+        ? a.featured_image.startsWith("http")
+          ? a.featured_image
+          : `${CMS_API_URL.replace("/api", "")}/storage/${a.featured_image.replace(/^\/?(storage\/)?/, "")}`
+        : "",
+      readTime: a.read_time
+        ? `${a.read_time} ${a.read_time_unit === "hour" ? "hour" : "min"} read`
+        : "",
+      author: a.author || "Tim Edukasi Leanbot AiCI",
+    }));
+
+    // Extract unique categories
+    const uniqueCategories = [
+      ...new Set(articles.map((a: any) => a.category).filter(Boolean)),
+    ];
+    categories = ["Semua Artikel", ...uniqueCategories];
+  }
+} catch (err) {
+  console.error("Failed to fetch education articles:", err);
+}
 ---
 
 <Layout>
@@ -10,7 +62,7 @@ import CtaSection from '../components/CtaSection.vue';
   <EduHero client:load />
 
   <!-- Grid Artikel Edukasi -->
-  <EduArticleGrid client:load />
+  <EduArticleGrid client:load articles={articles} categories={categories} />
 
   <!-- Gunakan ulang CTA Section dari Landing Page -->
   <CtaSection client:load />
