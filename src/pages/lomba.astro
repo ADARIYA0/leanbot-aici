@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+// @ts-ignore
+import LombaDirectoryHero from '../components/lomba/LombaDirectoryHero.vue';
+// @ts-ignore
+import LombaList from '../components/lomba/LombaList.vue';
+// @ts-ignore
+import CtaSection from '../components/CtaSection.vue';
+
+// Use static generation since we are currently using dummy data for this page
+export const prerender = true;
+
+const pageTitle = "Portal Informasi Lomba Robotika — Leanbot AiCI";
+const pageDescription = "Temukan berbagai informasi kompetisi robotika, STEM, dan inovasi teknologi dari seluruh dunia yang sejalan dengan visi Leanbot AiCI.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="w-full relative overflow-hidden bg-white">
+    <!-- Hero Section Directory -->
+    <LombaDirectoryHero client:load />
+    
+    <!-- Lomba External Grid List -->
+    <LombaList client:visible />
+
+    <!-- General CTA section -->
+    <CtaSection 
+      title="Siapkan Tim Anda Sekarang"
+      subtitle="Jadikan Leanbot sebagai mitra inovasi Anda. Pelajari modul, ikuti kompetisi eksternal, dan raih prestasi di ajang nasional hingga internasional."
+      btnText="Mulai Belajar"
+      btnLink="/edukasi"
+      client:visible 
+    />
+  </main>
+</Layout>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
