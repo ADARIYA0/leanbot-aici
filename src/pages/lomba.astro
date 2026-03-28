@@ -7,8 +7,26 @@ import LombaList from '../components/lomba/LombaList.vue';
 // @ts-ignore
 import CtaSection from '../components/CtaSection.vue';
 
-// Use static generation since we are currently using dummy data for this page
-export const prerender = true;
+// SSR: fetch competitions from CMS API
+export const prerender = false;
+
+const CMS_API_URL = import.meta.env.CMS_API_URL;
+
+let competitions: Record<string, unknown>[] = [];
+
+if (CMS_API_URL) {
+  try {
+    const res = await fetch(`${CMS_API_URL}/v1/cms/public/articles?content_type=competition&status=published`);
+    if (res.ok) {
+      const json = await res.json();
+      // The API returns { data: { data: [...] } } for paginated or { data: [...] } for plain
+      const raw = json?.data?.data ?? json?.data ?? [];
+      competitions = Array.isArray(raw) ? raw : [];
+    }
+  } catch (err) {
+    console.error('Failed to fetch competitions:', err);
+  }
+}
 
 const pageTitle = "Portal Informasi Lomba Robotika — Leanbot AiCI";
 const pageDescription = "Temukan berbagai informasi kompetisi robotika, STEM, dan inovasi teknologi dari seluruh dunia yang sejalan dengan visi Leanbot AiCI.";
@@ -20,7 +38,7 @@ const pageDescription = "Temukan berbagai informasi kompetisi robotika, STEM, da
     <LombaDirectoryHero client:load />
     
     <!-- Lomba External Grid List -->
-    <LombaList client:visible />
+    <LombaList competitions={competitions} client:visible />
 
     <!-- General CTA section -->
     <CtaSection 

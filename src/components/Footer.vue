@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear()
         <!-- Column 1: Logo + Description -->
         <div class="space-y-6">
           <a href="/" class="inline-block">
-            <img :src="logoSrc" alt="AiCI Logo" class="h-20 w-auto" />
+            <img :src="logoSrc" alt="AiCI Logo" class="h-20 w-auto" loading="lazy" />
           </a>
           <p class="text-sm leading-relaxed text-gray-400">
             Leanbot adalah robot toolkit edukasi STEM Metaverse pertama di dunia
