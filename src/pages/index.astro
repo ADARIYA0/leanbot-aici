@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection.vue";
 import FeaturesSection from "../components/FeaturesSection.vue";
 import AboutSection from "../components/AboutSection.vue";
 import CtaSection from "../components/CtaSection.vue";
+import SpecHotspotSection from "../components/specifications/SpecHotspotSection.vue";
 import leanbotRobot from "../assets/images/Leanbot-nobg.png";
 import leanbotRobot2 from "../assets/images/Leanbot-nobg-2.png";
 ---
@@ -12,5 +13,6 @@ import leanbotRobot2 from "../assets/images/Leanbot-nobg-2.png";
 	<HeroSection robotImageSrc={leanbotRobot.src} />
 	<FeaturesSection />
 	<AboutSection robotImageSrc={leanbotRobot2.src} />
+	<SpecHotspotSection client:load />
 	<CtaSection />
 </Layout>

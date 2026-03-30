@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SpecHero from "../components/specifications/SpecHero.vue";
+import SpecFeaturesSection from "../components/specifications/SpecFeaturesSection.vue";
+import SpecDetailedTabs from "../components/specifications/SpecDetailedTabs.vue";
+import CtaSection from "../components/CtaSection.vue";
+
+export const prerender = true;
+---
+
+<Layout>
+  <!-- Hero Banner untuk Halaman Spesifikasi -->
+  <SpecHero client:load />
+
+  <!-- Penjelasan Keunggulan Spesifikasi Edukatif (Level B) -->
+  <SpecFeaturesSection client:load />
+
+  <!-- Detail Terstruktur dengan Tabs (Level C) -->
+  <SpecDetailedTabs client:load />
+
+  <!-- Reused CTA Section -->
+  <CtaSection client:load />
+</Layout>
