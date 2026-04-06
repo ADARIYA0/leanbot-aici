@@ -3,8 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/HeroSection.vue";
 import FeaturesSection from "../components/FeaturesSection.vue";
 import AboutSection from "../components/AboutSection.vue";
+import PythaverseSection from "../components/PythaverseSection.vue";
 import CtaSection from "../components/CtaSection.vue";
-import SpecHotspotSection from "../components/specifications/SpecHotspotSection.vue";
+import LeanbotSummarySection from "../components/LeanbotSummarySection.vue";
 import leanbotRobot from "../assets/images/Leanbot-nobg.png";
 import leanbotRobot2 from "../assets/images/Leanbot-nobg-2.png";
 ---
@@ -13,6 +14,7 @@ import leanbotRobot2 from "../assets/images/Leanbot-nobg-2.png";
 	<HeroSection robotImageSrc={leanbotRobot.src} />
 	<FeaturesSection />
 	<AboutSection robotImageSrc={leanbotRobot2.src} />
-	<SpecHotspotSection client:load />
+	<LeanbotSummarySection client:load />
+	<PythaverseSection />
 	<CtaSection />
 </Layout>

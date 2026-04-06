@@ -25,15 +25,15 @@
     </div>
 
     <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center pt-8">
-      <div class="mx-auto max-w-2xl">
+      <div class="mx-auto max-w-3xl">
         <p class="text-base font-semibold leading-7 text-leanbot-red uppercase tracking-widest mb-4">
-          Data Teknis Terperinci
+          Spesifikasi Robot
         </p>
         <h1 class="text-4xl font-bold tracking-tight text-white mb-6 lg:text-5xl lg:leading-tight">
-          Spesifikasi Leanbot
+          Lebih dari Sekadar Robot Fisik
         </h1>
         <p class="text-lg leading-relaxed text-gray-300">
-          Dari material rangka hingga sensor cerdas di dalamnya, temukan semua detail teknis yang membuat Leanbot menjadi platform robotika edukasi terdepan.
+          Hadir dalam 3 versi: <span class="text-white font-semibold">Standard</span>, <span class="text-white font-semibold">Advanced</span>, dan <span class="text-white font-semibold">IoT</span>. Mendukung penuh pembelajaran AI, Internet of Things, dan kurikulum STEM dari tingkat dasar hingga keahlian madya.
         </p>
       </div>
     </div>
