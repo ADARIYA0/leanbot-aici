@@ -52,36 +52,45 @@ const filteredArticles = computed(() => {
         <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <TransitionGroup name="list">
             <article v-for="(article, index) in filteredArticles" :key="article.id" :class="[
-              'relative flex flex-col items-start justify-between rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-300',
-              index === 0 && activeCategory === 'Semua Artikel' ? 'lg:col-span-2 lg:flex-row' : 'p-6'
+              'relative flex flex-col justify-between rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-300',
+              index === 0 && activeCategory === 'Semua Artikel' ? 'lg:col-span-2 lg:flex-row overflow-hidden items-stretch' : 'p-6 items-start'
             ]">
               <!-- Gambar Artikel -->
               <div :class="[
-                'relative w-full overflow-hidden',
-                index === 0 && activeCategory === 'Semua Artikel' ? 'lg:w-1/2 lg:rounded-l-2xl lg:rounded-r-none rounded-t-2xl' : 'rounded-xl'
+                'relative w-full shrink-0',
+                index === 0 && activeCategory === 'Semua Artikel' ? 'lg:w-1/2 min-h-[300px]' : 'rounded-xl overflow-hidden'
               ]">
-                <div :class="[
-                  'block w-full overflow-hidden',
-                  index === 0 && activeCategory === 'Semua Artikel' ? 'h-full min-h-[300px]' : 'pb-[56.25%]'
-                ]">
+                <template v-if="index === 0 && activeCategory === 'Semua Artikel'">
                   <img v-if="article.image" :src="article.image" :alt="article.title"
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700" />
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
                   <div v-else class="absolute inset-0 h-full w-full bg-gray-200 flex items-center justify-center">
                     <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                </div>
-                <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/10"
-                  :class="index === 0 && activeCategory === 'Semua Artikel' ? 'lg:rounded-l-2xl rounded-t-2xl' : 'rounded-xl'">
+                </template>
+                <template v-else>
+                  <div class="block w-full relative pb-[56.25%]">
+                    <img v-if="article.image" :src="article.image" :alt="article.title"
+                      class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                    <div v-else class="absolute inset-0 h-full w-full bg-gray-200 flex items-center justify-center">
+                      <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  </div>
+                </template>
+                <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/10 pointer-events-none"
+                  :class="index === 0 && activeCategory === 'Semua Artikel' ? '' : 'rounded-xl'">
                 </div>
               </div>
 
               <!-- Konten Artikel -->
               <div :class="[
-                'w-full flex flex-col justify-between',
-                index === 0 && activeCategory === 'Semua Artikel' ? 'lg:w-1/2 p-8 lg:p-12 h-full' : 'mt-0'
+                'w-full flex flex-col',
+                index === 0 && activeCategory === 'Semua Artikel' ? 'lg:w-1/2 p-8 lg:p-12 justify-center h-full' : 'mt-0 justify-between h-full'
               ]">
                 <div>
                   <!-- Meta Data (Kategori & Waktu) -->

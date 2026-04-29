@@ -9,7 +9,7 @@ defineProps({
 const navLinks = [
   { label: 'Beranda', href: '/' },
   { label: 'Edukasi', href: '/edukasi' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Lomba', href: '/lomba' },
   { label: 'Tentang Kami', href: '/tentang-kami' },
   { label: 'Kontak', href: '/kontak' },
 ]
